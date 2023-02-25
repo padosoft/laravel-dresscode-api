@@ -1,0 +1,73 @@
+{
+    "name": "padosoft/desscode-api",
+    "description": "",
+    "keywords": [
+        "bramato",
+        "dresscode-api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Bramato",
+            "email": "marco@bramato.com",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/padosoft/dresscode-api"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "adci/full-name-parser": "^0.2.4",
+        "doctrine/dbal": "^3.3",
+        "funeralzone/valueobjects": "^0.5.0",
+        "illuminate/contracts": ">=5.8|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/database": ">=5.8|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/encryption": ">=5.8|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/support": "^9.46",
+        "illuminate/validation": ">=5.8|^6.0|^7.0|^8.0|^9.0",
+        "padosoft/dresscode-api": "^0.1"
+    },
+
+
+    "require-dev": {
+        "spatie/ray": "^1.28",
+        "roave/security-advisories": "dev-latest",
+        "orchestra/testbench": "^3.8.2|^4.0|^5.0|^6.0|^7.0",
+        "mockery/mockery": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Padosoft\\Laravel\\DressCodeApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Padosoft\\Laravel\\DressCodeApi\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "DressCodeApi": "Padosoft\\Laravel\\DressCodeApi\\Facade"
+            },
+            "providers": [
+                "Padosoft\\Laravel\\DressCodeApi\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
