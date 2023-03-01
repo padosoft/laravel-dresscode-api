@@ -67,9 +67,7 @@
             "providers": [
                 "Padosoft\\Laravel\\DressCodeApi\\ServiceProvider"
             ],
-            "tags": [
-                "laravel-assets"
-            ]
+            "tag": "laravel-assets"
         }
     },
     "minimum-stability": "dev",
