@@ -3,7 +3,8 @@
     "description": "",
     "keywords": [
         "bramato",
-        "dresscode-api"
+        "dresscode-api",
+        "laravel-assets"
     ],
     "license": "MIT",
     "authors": [
@@ -65,6 +66,9 @@
             },
             "providers": [
                 "Padosoft\\Laravel\\DressCodeApi\\ServiceProvider"
+            ],
+            "tags": [
+                "laravel-assets"
             ]
         }
     },
