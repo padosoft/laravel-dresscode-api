@@ -1,6 +1,6 @@
 <?php
 
-namespace Padosoft\LaravelAmazonSellingPartnerApi\dto;
+namespace Padosoft\LaravelDressCodeApi\Models\dto;
 
 use Padosoft\LaravelAmazonSellingPartnerApi\Nazioni;
 use Padosoft\LaravelAmazonSellingPartnerApi\Valute;

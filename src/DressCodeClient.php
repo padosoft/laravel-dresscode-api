@@ -7,12 +7,6 @@ use Padosoft\DressCodeApi\DressCodeClient as DressCodeClientApi;
 class DressCodeClient
 {
 use DressCodeKeyTrait;
-    public function test(): string
-    {
-
-        return  'test';
-    }
-
     public function uploadProducts(array $products)
     {
         $username = config('dresscode-api-settings.username');

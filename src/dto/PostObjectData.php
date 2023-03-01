@@ -1,8 +1,8 @@
 <?php
 
-namespace Padosoft\Laravel\DressCodeApi\dto;
+namespace Padosoft\LaravelDressCodeApi\Models\dto;
 
-use Padosoft\LaravelAmazonSellingPartnerApi\dto\AutoDtoBase;
+use Padosoft\LaravelDressCodeApi\Models\dto\AutoDtoBase;
 
 class PostObjectData extends AutoDtoBase
 {
