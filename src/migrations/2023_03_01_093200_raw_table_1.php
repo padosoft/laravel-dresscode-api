@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('dresscode_raw_orders', function (Blueprint $table) {
             $table->id();
             $table->integer('orderID')->unique();
             $table->timestamp('checkoutDate')->nullable();
@@ -32,10 +32,12 @@ return new class extends Migration {
             $table->boolean('giftWrap')->default(false);
             $table->text('giftWrapNote')->nullable();
             $table->decimal('totalAmount', 8, 2);
+            $table->boolean('is_error')->default(0);
+            $table->string('note_error')->default('');
             $table->timestamps();
         });
 
-        Schema::create('shipping_addresses', function (Blueprint $table) {
+        Schema::create('dresscode_raw_shipping_addresses', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
@@ -57,7 +59,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('billing_addresses', function (Blueprint $table) {
+        Schema::create('dresscode_raw_billing_addresses', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
@@ -80,7 +82,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::create('dresscode_raw_order_details', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
@@ -92,7 +94,7 @@ return new class extends Migration {
             $table->decimal('discount', 8, 2);
             $table->timestamps();
         });
-        Schema::create('order_discounts', function (Blueprint $table) {
+        Schema::create('dresscode_raw_order_discounts', function (Blueprint $table) {
             $table->id();
             $table->integer('order_detail_id')->unsigned();
             $table->foreign('order_detail_id')->references('id')->on('order_details')->onDelete('cascade');
@@ -110,10 +112,10 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('order_discounts');
-        Schema::dropIfExists('order_details');
-        Schema::dropIfExists('billing_addresses');
-        Schema::dropIfExists('shipping_addresses');
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('dresscode_raw_order_discounts');
+        Schema::dropIfExists('dresscode_raw_order_details');
+        Schema::dropIfExists('dresscode_raw_billing_addresses');
+        Schema::dropIfExists('dresscode_raw_shipping_addresses');
+        Schema::dropIfExists('dresscode_raw_orders');
     }
 };
