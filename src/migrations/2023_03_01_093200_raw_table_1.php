@@ -40,7 +40,6 @@ return new class extends Migration {
         Schema::create('dresscode_raw_shipping_addresses', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->string('businessName')->nullable();
             $table->string('name');
             $table->string('surname');

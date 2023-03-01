@@ -1,6 +1,6 @@
 <?php
 
-namespace Padosoft\Laravel\DressCodeApi;
+namespace Padosoft\LaravelDressCodeApi;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

@@ -42,12 +42,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Padosoft\\Laravel\\DressCodeApi\\": "src/"
+            "Padosoft\\LaravelDressCodeApi\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Padosoft\\Laravel\\DressCodeApi\\Tests\\": "tests"
+            "Padosoft\\LaravelDressCodeApi\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -62,10 +62,10 @@
     "extra": {
         "laravel": {
             "aliases": {
-                "DressCodeApi": "Padosoft\\Laravel\\DressCodeApi\\Facade"
+                "DressCodeApi": "Padosoft\\LaravelDressCodeApi\\Facade"
             },
             "providers": [
-                "Padosoft\\Laravel\\DressCodeApi\\ServiceProvider"
+                "Padosoft\\LaravelDressCodeApi\\ServiceProvider"
             ],
             "tag": "laravel-assets"
         }
