@@ -1,6 +1,6 @@
 <?php
 
-namespace Padosoft\LaravelDressCodeApi\Models\dto;
+namespace Padosoft\LaravelDressCodeApi\dto;
 
 use Padosoft\LaravelDressCodeApi\Models\dto\AutoDtoBase;
 
