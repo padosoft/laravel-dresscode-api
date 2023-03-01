@@ -30,5 +30,5 @@ Per utilizzare la configurazione, è possibile accedere ai valori delle chiavi u
 Ad esempio, per accedere all'username, è possibile usare il seguente codice:
 
 ```php
-$username = $config['username'];
+$username = $config['dresscode-api-settings.username'];
 ```
