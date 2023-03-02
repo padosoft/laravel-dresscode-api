@@ -18,7 +18,7 @@ class DressCodeClient
     public string $hub_key;
     public string $subscription_key;
 
-    public function __construct(?string $username, ?string $password, ?string $hub_key, ?string $subscription_key)
+    public function __construct(string $username = null, string $password = null, string $hub_key = null, string $subscription_key= null)
     {
         //se i valori non sono passati nel costruttore li prende dalle config
         $this->username = $username??config('dresscode-api-settings.username',null);
