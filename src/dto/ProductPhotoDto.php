@@ -2,9 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
-use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
-
 class ProductPhotoDto extends BaseDto
 {
     public int $position;

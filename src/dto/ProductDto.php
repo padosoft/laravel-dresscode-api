@@ -2,10 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Illuminate\Support\Facades\Validator;
-use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
-use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
-
 class ProductDto extends BaseDto
 {
     public string $brandModelCode;

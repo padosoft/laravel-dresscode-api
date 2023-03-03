@@ -2,8 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\AutoDtoBase;
-
 class ApiResponseObject extends AutoDtoBase
 {
     public string $status;

@@ -2,11 +2,11 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelAmazonSellingPartnerApi\Nazioni;
-use Padosoft\LaravelAmazonSellingPartnerApi\Valute;
 use Carbon\Carbon;
 use Exception;
 use Funeralzone\ValueObjectExtensions\Implementations\EmailVO;
+use Padosoft\LaravelAmazonSellingPartnerApi\Nazioni;
+use Padosoft\LaravelAmazonSellingPartnerApi\Valute;
 use function App\Classes\settings;
 
 class AutoDtoBase
@@ -22,6 +22,32 @@ class AutoDtoBase
         $this->data = $data;
         $this->original = $data;
         $this->handlerData();
+    }
+
+    public static function create(array $data)
+    {
+        //echo('Creata staticamente');
+        return new self($data);
+    }
+
+    public function getStructureRules(): array
+    {
+        return [];
+    }
+
+    public function isOk(string $name, bool $addError = false)
+    {
+        if (array_key_exists($name, $this->data)) {
+            return true;
+        }
+        if ($addError) {
+            $this->addError(name: $name, error: 'Campo non trovato');
+        }
+        return false;
+    }
+
+    public function setExtraData(): void
+    {
     }
 
     protected function handlerData()
@@ -69,11 +95,6 @@ class AutoDtoBase
         $this->setExtraData();
     }
 
-    public function getStructureRules(): array
-    {
-        return [];
-    }
-
     protected function setObj($name, $class)
     {
         if (($this->data[$name] ?? null) === null) {
@@ -91,26 +112,9 @@ class AutoDtoBase
         $this->dataError[] = ['field' => $name, 'error' => $error];
     }
 
-    public static function create(array $data)
-    {
-        //echo('Creata staticamente');
-        return new self($data);
-    }
-
     protected function setBool($name)
     {
         $this->$name = $this->isOk(name: $name, addError: true) && $this->data[$name] === 'true';
-    }
-
-    public function isOk(string $name, bool $addError = false)
-    {
-        if (array_key_exists($name, $this->data)) {
-            return true;
-        }
-        if ($addError) {
-            $this->addError(name: $name, error: 'Campo non trovato');
-        }
-        return false;
     }
 
     protected function setEmail($name)
@@ -187,10 +191,6 @@ class AutoDtoBase
             $country->codice_iso_alpha2 = $this->isOk($name) ? $this->data[$name] : '';
         }
         $this->$name = $country;
-    }
-
-    public function setExtraData(): void
-    {
     }
 
     protected function isObj($className): string

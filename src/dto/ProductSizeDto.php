@@ -2,11 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\ProductStockDto;
-use Padosoft\LaravelDressCodeApi\dto\ProductPriceDto;
-use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
-use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
-
 class ProductSizeDto extends BaseDto
 {
     public string $sizeId;

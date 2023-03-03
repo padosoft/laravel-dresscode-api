@@ -2,8 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\ProductPriceDto;
-
 class ProductPricesDto
 {
     /**

@@ -2,8 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\AutoDtoBase;
-
 class PostObjectData extends AutoDtoBase
 {
     public string $wmsID;
@@ -24,7 +22,7 @@ class PostObjectData extends AutoDtoBase
             "dataType" => "string",
             "data" => "array",
             "mimeType" => "string",
-            "testMode" => "bool"
+            "testMode" => "bool",
         ];
     }
 }

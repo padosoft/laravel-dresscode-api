@@ -2,8 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\AutoDtoBase;
-
 class PostObjectOption extends AutoDtoBase
 {
     public string $name;
@@ -18,7 +16,7 @@ class PostObjectOption extends AutoDtoBase
     {
         return [
             "name" => "string",
-            "value" => "string"
+            "value" => "string",
         ];
     }
 }
