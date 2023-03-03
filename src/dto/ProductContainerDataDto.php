@@ -12,7 +12,7 @@ class ProductContainerDataDto
     public ProductLanguagesDto $languages;
     public ProductPhotosDto $photos;
 
-    public function __construct(string $id, ProductDto $product, ProductPricesDto $prices, ProductSizeDto $sizes, ProductLanguagesDto $languages, ProductPhotosDto $photos)
+    public function __construct(string $id, ProductDto $product, ProductPricesDto $prices, ProductSizesDto $sizes, ProductLanguagesDto $languages, ProductPhotosDto $photos)
     {
         $this->id = $id;
         $this->product = $product;
