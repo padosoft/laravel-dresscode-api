@@ -6,10 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
 use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
 
-class ProductDto implements DtoValidationInterface
+class ProductDto extends BaseDto
 {
-    use DtoValidationTraits;
-
     public string $brandModelCode;
     public string $brandColorCode;
     public string $sku;
@@ -68,6 +66,8 @@ class ProductDto implements DtoValidationInterface
         $this->composition = $composition;
         $this->weight = $weight;
         $this->tags = $tags;
+        //constructor parent
+        parent::__construct();
     }
 
     public static function create(

@@ -2,12 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
-use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
-
-class ProductLanguageDto implements DtoValidationInterface
+class ProductLanguageDto extends BaseDto
 {
-    use DtoValidationTraits;
 
     public string $languageId;
     public ?string $name;
@@ -28,6 +24,7 @@ class ProductLanguageDto implements DtoValidationInterface
         $this->sizeAndFit = $sizeAndFit;
         $this->notes = $notes;
         $this->customData = $customData;
+        parent::__construct();
     }
 
     public static function create(string $languageId, ?string $name, ?string $description, ?string $composition, ?string $madeIn, ?string $sizeAndFit, ?string $notes, $customData): ProductLanguageDto

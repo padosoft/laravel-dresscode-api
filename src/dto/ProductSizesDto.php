@@ -2,7 +2,7 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-class ProductSizesDto
+class ProductSizesDto extends BaseDto
 {
     /**
      * @var ProductSizeDto[]

@@ -2,12 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
-use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
-
-class ProductPriceDto implements DtoValidationInterface
+class ProductPriceDto extends BaseDto
 {
-    use DtoValidationTraits;
     public ?string $priceListId;
     public ?float $priceNoVat;
     public ?float $priceWholesale;
@@ -19,6 +15,7 @@ class ProductPriceDto implements DtoValidationInterface
         $this->priceNoVat = $priceNoVat;
         $this->priceWholesale = $priceWholesale;
         $this->price = $price;
+        parent::__construct();
     }
 
     public static function create(?string $priceListId, ?float $priceNoVat, ?float $priceWholesale, float $price): ProductPriceDto
@@ -57,9 +54,9 @@ class ProductPriceDto implements DtoValidationInterface
      */
     public function validationMessages(): array
     {
-       return [
-           'price.required' => 'The price is required',
-       ];
+        return [
+            'price.required' => 'The price is required',
+        ];
     }
 
     /**

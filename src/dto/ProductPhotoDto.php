@@ -5,10 +5,8 @@ namespace Padosoft\LaravelDressCodeApi\dto;
 use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
 use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
 
-class ProductPhotoDto implements DtoValidationInterface
+class ProductPhotoDto extends BaseDto
 {
-    use DtoValidationTraits;
-
     public int $position;
     public ?string $tag;
     public string $url;
@@ -18,6 +16,7 @@ class ProductPhotoDto implements DtoValidationInterface
         $this->position = $position;
         $this->tag = $tag;
         $this->url = $url;
+        parent::__construct();
     }
 
     public static function create(int $position, ?string $tag, string $url): ProductPhotoDto

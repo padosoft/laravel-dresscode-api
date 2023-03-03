@@ -7,10 +7,8 @@ use Padosoft\LaravelDressCodeApi\dto\ProductPriceDto;
 use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
 use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
 
-class ProductSizeDto implements DtoValidationInterface
+class ProductSizeDto extends BaseDto
 {
-    use DtoValidationTraits;
-
     public string $sizeId;
     public ?string $gtin;
     public ?array $stocks;
@@ -34,6 +32,7 @@ class ProductSizeDto implements DtoValidationInterface
                 $price['price']
             );
         }, $prices) : null;
+        parent::__construct();
     }
 
     public static function create(string $sizeId, ?string $gtin, ?array $stocks, ?array $prices): ProductSizeDto

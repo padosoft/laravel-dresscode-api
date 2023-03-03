@@ -5,7 +5,7 @@ namespace Padosoft\LaravelDressCodeApi\dto;
 use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
 use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
 
-class ProductStockDto implements DtoValidationInterface
+class ProductStockDto extends BaseDto
 {
     use DtoValidationTraits;
     public ?string $storeId;
@@ -15,6 +15,7 @@ class ProductStockDto implements DtoValidationInterface
     {
         $this->storeId = $storeId;
         $this->stock = $stock;
+        parent::__construct();
     }
 
     public static function create(?string $storeId, int $stock): ProductStockDto
