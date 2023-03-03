@@ -6,6 +6,34 @@ namespace Padosoft\LaravelDressCodeApi\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class DresscodeRawOrdersModel
+ * @package Padosoft\LaravelDressCodeApi\Models
+ * @property int    $id
+ * @property string $orderID
+ * @property string $checkoutDate
+ * @property string $clientId
+ * @property string $storeId
+ * @property string $shippingType
+ * @property float  $shippingCost
+ * @property string $voucher
+ * @property string $paymentMethod
+ * @property string $administrativeNotes
+ * @property string $customerNotes
+ * @property string $shippingVector
+ * @property string $packagingType
+ * @property float  $packagingCost
+ * @property float  $gstCost
+ * @property float  $donation
+ * @property string $giftWrap
+ * @property string $giftWrapNote
+ * @property float  $totalAmount
+ * @property string $is_error
+ * @property string $note_error
+ * @property string $created_at
+ * @property string $updated_at
+ *
+ */
 class DresscodeRawOrdersModel extends Model
 {
     use HasFactory;
@@ -32,7 +60,7 @@ class DresscodeRawOrdersModel extends Model
         'giftWrapNote',
         'totalAmount',
         'is_error',
-        'note_error'
+        'note_error',
     ];
 
     // Define the relationship with the DresscodeRawShippingAddress model

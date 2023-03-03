@@ -12,4 +12,8 @@ return [
     'hub_key' => env('DRESSCODE_HUB_KEY',''),
     // La chiave di sottoscrizione per accedere all'API di Dresscode, letta dall'ambiente
     'subscription_key' => env('DRESSCODE_SUBSCRIPTION_KEY',''),
+
+    'providers' => [
+        Illuminate\View\ViewServiceProvider::class,
+    ],
 ];

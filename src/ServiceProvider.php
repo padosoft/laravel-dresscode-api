@@ -10,14 +10,14 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
         $this->publishes([
-            __DIR__ . '/Migrations' => database_path('migrations')
+            __DIR__ . '/Migrations' => database_path('migrations'),
         ]);
         $this->publishes([
-            __DIR__ . '/Config/config.php' => config_path('dresscode-api-settings.php')
+            __DIR__ . '/Config/config.php' => config_path('dresscode-api-settings.php'),
         ]);
     }
 
@@ -26,11 +26,11 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
-        $this->app->singleton(DressCodeClient::class, function () {
-            return new DressCodeClient();
+        $this->app->singleton(DressCodeClientService::class, function () {
+            return new DressCodeClientService();
         });
     }
 
@@ -39,8 +39,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
-        return [DressCodeClient::class];
+        return [DressCodeClientService::class];
     }
 }

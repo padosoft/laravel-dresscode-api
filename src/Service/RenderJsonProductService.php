@@ -1,0 +1,32 @@
+<?php
+
+namespace Padosoft\LaravelDressCodeApi\Service;
+
+use Exception;
+use Padosoft\LaravelDressCodeApi\dto\ProductContainerDataDto;
+use Padosoft\LaravelDressCodeApi\ViewModel\ProductJsonViewModel;
+
+class RenderJsonProductService
+{
+    public ProductJsonViewModel $view;
+
+    public function __construct(ProductJsonViewModel $view)
+    {
+        $this->view = $view;
+    }
+
+    /**
+     * @throws Exception
+     * return string
+     *
+     */
+    public function execute(ProductContainerDataDto $product): string
+    {
+        try {
+            return $this->view->render($product);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+}
