@@ -8,7 +8,7 @@ use Padosoft\DressCodeApi\DressCodeClient as DressCodeClientApi;
 class UploadProductsService extends DressCodeClientService
 {
     /**
-     * @param ProductsDto $products
+     * @param ProductsSenderService $products
      * return PostResponse
      * invia i dati al server
      * recupera lo status code e i dati della risposta
@@ -19,7 +19,7 @@ class UploadProductsService extends DressCodeClientService
      * @return PostResponse
      * @throws Exception
      */
-    public function execute(ProductsDto $products): PostResponse
+    public function execute(ProductsSenderService $products): PostResponse
     {
         try {
             //invia i dati al server

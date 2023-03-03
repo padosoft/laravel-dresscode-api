@@ -2,8 +2,14 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-class ProductDto
+use Illuminate\Support\Facades\Validator;
+use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
+use Padosoft\LaravelDressCodeApi\interfaces\DtoValidationInterface;
+
+class ProductDto implements DtoValidationInterface
 {
+    use DtoValidationTraits;
+
     public string $brandModelCode;
     public string $brandColorCode;
     public string $sku;
@@ -106,4 +112,65 @@ class ProductDto
             $tags
         );
     }
+
+    public function toArray(): array
+    {
+        return [
+            'brandModelCode' => $this->brandModelCode,
+            'brandColorCode' => $this->brandColorCode,
+            'sku' => $this->sku,
+            'seasonId' => $this->seasonId,
+            'brandId' => $this->brandId,
+            'colorId' => $this->colorId,
+            'genreId' => $this->genreId,
+            'typeId' => $this->typeId,
+            'categoryId' => $this->categoryId,
+            'subcategoryId' => $this->subcategoryId,
+            'sizeTypeId' => $this->sizeTypeId,
+            'collectionTypeId' => $this->collectionTypeId,
+            'hasWashingtonFlag' => $this->hasWashingtonFlag,
+            'productPreSaleEnd' => $this->productPreSaleEnd,
+            'productDeleted' => $this->productDeleted,
+            'composition' => $this->composition,
+            'weight' => $this->weight,
+            'tags' => $this->tags,
+        ];
+    }
+
+    public function validationRoles(): array
+    {
+        return [
+            'brandModelCode' => 'required|string',
+            'sku' => 'required|string',
+            'seasonId' => 'required|string',
+            'brandId' => 'required|string',
+            'colorId' => 'required|string',
+            'genreId' => 'required|string',
+        ];
+    }
+
+    public function validationMessages(): array
+    {
+        return [
+            'brandModelCode.required' => 'Brand Model Code is required',
+            'sku.required' => 'Sku is required',
+            'seasonId.required' => 'Season Id is required',
+            'brandId.required' => 'Brand Id is required',
+            'colorId.required' => 'Color Id is required',
+            'genreId.required' => 'Genre Id is required',
+        ];
+    }
+
+    public function validationAttributes(): array
+    {
+        return [
+            'brandModelCode' => 'Brand Model Code',
+            'sku' => 'Sku',
+            'seasonId' => 'Season Id',
+            'brandId' => 'Brand Id',
+            'colorId' => 'Color Id',
+            'genreId' => 'Genre Id',
+        ];
+    }
+
 }

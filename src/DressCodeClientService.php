@@ -54,7 +54,7 @@ class DressCodeClientService
         }
     }
 
-    public function logProductsSend(ProductsDto $products, bool $success = true): void
+    public function logProductsSend(ProductsSenderService $products, bool $success = true): void
     {
         //registra il log dei prodotti inviati
         //Compress json data
