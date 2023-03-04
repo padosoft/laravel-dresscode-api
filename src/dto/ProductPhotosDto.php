@@ -26,4 +26,13 @@ class ProductPhotosDto
 
         return new self($productPhotos);
     }
+
+    public static function createFromCollection(Collection $collection): ProductPhotosDto
+    {
+        $productPhotos = $collection->map(function ($item) {
+            return ProductPhotoDto::createFromModel($item);
+        })->toArray();
+
+        return new self($productPhotos);
+    }
 }

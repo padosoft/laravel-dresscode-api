@@ -27,4 +27,13 @@ class ProductPricesDto
 
         return new self($productPrices);
     }
+
+    public function createFromCollection(Collection $collection): ProductPricesDto
+    {
+        $productPrices = $collection->map(function ($item) {
+            return ProductPriceDto::createFromModel($item);
+        })->toArray();
+
+        return new self($productPrices);
+    }
 }

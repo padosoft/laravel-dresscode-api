@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Database\Eloquent\Model;
+
 class ProductPriceDto extends BaseDto
 {
     public ?string $priceListId;
@@ -21,6 +23,16 @@ class ProductPriceDto extends BaseDto
     public static function create(?string $priceListId, ?float $priceNoVat, ?float $priceWholesale, float $price): ProductPriceDto
     {
         return new self($priceListId, $priceNoVat, $priceWholesale, $price);
+    }
+
+    public static function createFromModel(Model $model): ProductPriceDto
+    {
+        return new self(
+            $model->priceListId,
+            $model->priceNoVat,
+            $model->priceWholesale,
+            $model->price
+        );
     }
 
     /**

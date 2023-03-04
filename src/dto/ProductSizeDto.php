@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Database\Eloquent\Model;
+
 class ProductSizeDto extends BaseDto
 {
     public string $sizeId;
@@ -33,6 +35,16 @@ class ProductSizeDto extends BaseDto
     public static function create(string $sizeId, ?string $gtin, ?array $stocks, ?array $prices): ProductSizeDto
     {
         return new self($sizeId, $gtin, $stocks, $prices);
+    }
+
+    public static function createFromModel(Model $model): ProductSizeDto
+    {
+        return new self(
+            $model->sizeId,
+            $model->gtin,
+            $model->stocks,
+            $model->prices
+        );
     }
 
     /**

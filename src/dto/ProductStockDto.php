@@ -2,6 +2,7 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Database\Eloquent\Model;
 use Padosoft\LaravelDressCodeApi\dto\traits\DtoValidationTraits;
 
 class ProductStockDto extends BaseDto
@@ -20,6 +21,14 @@ class ProductStockDto extends BaseDto
     public static function create(?string $storeId, int $stock): ProductStockDto
     {
         return new self($storeId, $stock);
+    }
+
+    public static function createFromModel(Model $model): ProductStockDto
+    {
+        return new self(
+            $model->storeId,
+            $model->stock
+        );
     }
 
     /**

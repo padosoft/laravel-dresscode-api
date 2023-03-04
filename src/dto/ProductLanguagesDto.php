@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Support\Collection;
+
 class ProductLanguagesDto
 {
     /**
@@ -28,6 +30,15 @@ class ProductLanguagesDto
                 $language['customData']
             );
         }, $languages);
+
+        return new self($productLanguages);
+    }
+
+    public static function createFromCollection(Collection $collection): ProductLanguagesDto
+    {
+        $productLanguages = $collection->map(function ($item) {
+            return ProductLanguageDto::createFromModel($item);
+        })->toArray();
 
         return new self($productLanguages);
     }

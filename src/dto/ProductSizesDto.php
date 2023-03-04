@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Support\Collection;
+
 class ProductSizesDto extends BaseDto
 {
     /**
@@ -24,6 +26,15 @@ class ProductSizesDto extends BaseDto
                 $size['prices'] ?? null
             );
         }, $sizes);
+
+        return new self($productSizes);
+    }
+
+    public static function createFromCollection(Collection $collection): ProductSizesDto
+    {
+        $productSizes = $collection->map(function ($item) {
+            return ProductSizeDto::createFromModel($item);
+        })->toArray();
 
         return new self($productSizes);
     }

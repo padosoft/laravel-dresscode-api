@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Database\Eloquent\Model;
+
 class ProductLanguageDto extends BaseDto
 {
 
@@ -30,6 +32,36 @@ class ProductLanguageDto extends BaseDto
     public static function create(string $languageId, ?string $name, ?string $description, ?string $composition, ?string $madeIn, ?string $sizeAndFit, ?string $notes, $customData): ProductLanguageDto
     {
         return new self($languageId, $name, $description, $composition, $madeIn, $sizeAndFit, $notes, $customData);
+    }
+
+    /**
+     * Crea un nuovo oggetto ProductLanguageDto a partire da un oggetto Model.
+     *
+     * @param Model $model L'oggetto Model da cui creare il ProductLanguageDto.
+     * @return ProductLanguageDto Il nuovo oggetto ProductLanguageDto.
+     *
+     * @property int $languageId L'ID della lingua a cui appartengono i dati del prodotto.
+     * @property string $name Il nome del prodotto.
+     * @property string|null $description La descrizione del prodotto (se presente).
+     * @property string|null $composition La composizione del prodotto (se presente).
+     * @property string|null $madeIn Il paese di origine del prodotto (se presente).
+     * @property string|null $sizeAndFit La taglia e la vestibilità del prodotto (se presente).
+     * @property string|null $notes Eventuali note sul prodotto (se presenti).
+     * @property array|null $customData Dati personalizzati aggiuntivi sul prodotto (se presenti).
+     */
+
+    public static function createFromModel(Model $model): ProductLanguageDto
+    {
+        return new self(
+            $model->languageId,
+            $model->name,
+            $model->description,
+            $model->composition,
+            $model->madeIn,
+            $model->sizeAndFit,
+            $model->notes,
+            $model->customData
+        );
     }
 
     /**

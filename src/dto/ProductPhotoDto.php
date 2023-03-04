@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Database\Eloquent\Model;
+
 class ProductPhotoDto extends BaseDto
 {
     public int $position;
@@ -19,6 +21,26 @@ class ProductPhotoDto extends BaseDto
     public static function create(int $position, ?string $tag, string $url): ProductPhotoDto
     {
         return new self($position, $tag, $url);
+    }
+
+    /**
+     * Crea un nuovo oggetto ProductPhotoDto a partire da un oggetto Model.
+     *
+     * @param Model $model L'oggetto Model da cui creare il ProductPhotoDto.
+     * @return ProductPhotoDto Il nuovo oggetto ProductPhotoDto.
+     *
+     * @property int $position La posizione della foto all'interno della galleria.
+     * @property string|null $tag Il tag associato alla foto (se presente).
+     * @property string $url L'URL della foto.
+     */
+
+    public static function createFromModel(Model $model): ProductPhotoDto
+    {
+        return new self(
+            $model->position,
+            $model->tag,
+            $model->url
+        );
     }
 
     /**
