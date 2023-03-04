@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Support\Collection;
+
 class ProductPricesDto
 {
     /**
@@ -35,5 +37,12 @@ class ProductPricesDto
         })->toArray();
 
         return new self($productPrices);
+    }
+
+    public function toArray(): array
+    {
+        return array_map(function ($price) {
+            return $price->toArray();
+        }, $this->prices);
     }
 }

@@ -42,4 +42,12 @@ class ProductLanguagesDto
 
         return new self($productLanguages);
     }
+
+    public function toArray(): array
+    {
+        return array_map(function ($item) {
+            return $item->toArray();
+        }, $this->languages);
+    }
+
 }

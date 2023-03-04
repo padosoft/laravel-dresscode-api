@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Database\Eloquent\Model;
+
 class ProductCompositionDto
 {
     public string $material;
@@ -16,5 +18,21 @@ class ProductCompositionDto
     public static function create(string $material, float $percentage): ProductCompositionDto
     {
         return new self($material, $percentage);
+    }
+
+    public static function createFromModel(Model $model): ProductCompositionDto
+    {
+        return new self(
+            $model->material,
+            $model->percentage
+        );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'material' => $this->material,
+            'percentage' => $this->percentage,
+        ];
     }
 }

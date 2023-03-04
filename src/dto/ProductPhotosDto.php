@@ -2,6 +2,8 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
+use Illuminate\Support\Collection;
+
 class ProductPhotosDto
 {
     /**
@@ -34,5 +36,12 @@ class ProductPhotosDto
         })->toArray();
 
         return new self($productPhotos);
+    }
+
+    public function toArray(): array
+    {
+        return array_map(function ($photo) {
+            return $photo->toArray();
+        }, $this->photos);
     }
 }

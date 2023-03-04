@@ -38,4 +38,11 @@ class ProductSizesDto extends BaseDto
 
         return new self($productSizes);
     }
+
+    public function toArray(): array
+    {
+        return array_map(function ($size) {
+            return $size->toArray();
+        }, $this->sizes);
+    }
 }

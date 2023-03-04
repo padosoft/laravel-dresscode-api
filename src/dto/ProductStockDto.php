@@ -11,6 +11,8 @@ class ProductStockDto extends BaseDto
     public ?string $storeId;
     public int $stock;
 
+    public bool $stockToZero = false;
+
     public function __construct(?string $storeId, int $stock)
     {
         $this->storeId = $storeId;

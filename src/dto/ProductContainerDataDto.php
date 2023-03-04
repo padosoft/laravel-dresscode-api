@@ -27,5 +27,17 @@ class ProductContainerDataDto
         return new self($id, $product, $prices, $sizes, $languages, $photos);
     }
 
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'product' => $this->product->toArray(),
+            'prices' => $this->prices->toArray(),
+            'sizes' => $this->sizes->toArray(),
+            'languages' => $this->languages->toArray(),
+            'photos' => $this->photos->toArray(),
+        ];
+    }
+
 
 }
