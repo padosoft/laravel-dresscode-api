@@ -9,41 +9,41 @@ class ProductSizeDto extends BaseDto
     public string $sizeId;
     public ?string $gtin;
     public ?array $stocks;
-    public ?array $prices;
 
-    public function __construct(string $sizeId, ?string $gtin, ?array $stocks, ?array $prices)
+    public function __construct(string $sizeId, ?string $gtin, ?array $stocks)
     {
+        // Aggiungiamo dei controlli sui dati in ingresso
+        if (empty(trim($sizeId))) {
+            throw new \InvalidArgumentException('Size ID cannot be empty');
+        }
         $this->sizeId = $sizeId;
         $this->gtin = $gtin;
-        $this->stocks = $stocks ? array_map(function ($stock) {
-            return ProductStockDto::create(
-                $stock['storeId'] ?? null,
-                $stock['stock']
-            );
-        }, $stocks) : null;
-        $this->prices = $prices ? array_map(function ($price) {
-            return ProductPriceDto::create(
-                $price['priceListId'] ?? null,
-                $price['priceNoVat'] ?? null,
-                $price['priceWholesale'] ?? null,
-                $price['price']
-            );
-        }, $prices) : null;
+        // Aggiungiamo una pulizia dei dati in ingresso
+        if ($stocks !== null) {
+            $this->stocks = array_map(function ($stock) {
+                return ProductStockDto::create(
+                    trim($stock['storeId'] ?? ''),
+                    (float)$stock['stock']
+                );
+            }, $stocks);
+        } else {
+            $this->stocks = null;
+        }
         parent::__construct();
     }
 
-    public static function create(string $sizeId, ?string $gtin, ?array $stocks, ?array $prices): ProductSizeDto
+    // Aggiungiamo i tipi di dato ai parametri dei metodi
+    public static function create(string $sizeId, ?string $gtin, ?array $stocks): ProductSizeDto
     {
-        return new self($sizeId, $gtin, $stocks, $prices);
+        return new self($sizeId, $gtin, $stocks);
     }
 
     public static function createFromModel(Model $model): ProductSizeDto
     {
         return new self(
-            $model->sizeId,
-            $model->gtin,
-            $model->stocks,
-            $model->prices
+            (string)$model->sizeId,
+            (string)$model->gtin,
+            (array)$model->stocks
         );
     }
 
@@ -58,9 +58,6 @@ class ProductSizeDto extends BaseDto
             'stocks' => $this->stocks ? array_map(function ($stock) {
                 return $stock->toArray();
             }, $this->stocks) : null,
-            'prices' => $this->prices ? array_map(function ($price) {
-                return $price->toArray();
-            }, $this->prices) : null,
         ];
     }
 
@@ -73,13 +70,9 @@ class ProductSizeDto extends BaseDto
             'sizeId' => 'required|string',
             'gtin' => 'nullable|string',
             'stocks' => 'nullable|array',
+            // Aggiungiamo la validazione del tipo di dato
             'stocks.*.storeId' => 'nullable|string',
             'stocks.*.stock' => 'required|numeric',
-            'prices' => 'nullable|array',
-            'prices.*.priceListId' => 'nullable|string',
-            'prices.*.priceNoVat' => 'nullable|numeric',
-            'prices.*.priceWholesale' => 'nullable|numeric',
-            'prices.*.price' => 'required|numeric',
         ];
     }
 
@@ -96,12 +89,6 @@ class ProductSizeDto extends BaseDto
             'stocks.*.storeId.string' => 'Store ID must be a string',
             'stocks.*.stock.required' => 'Stock is required',
             'stocks.*.stock.numeric' => 'Stock must be a number',
-            'prices.array' => 'Prices must be an array',
-            'prices.*.priceListId.string' => 'Price list ID must be a string',
-            'prices.*.priceNoVat.numeric' => 'Price no VAT must be a number',
-            'prices.*.priceWholesale.numeric' => 'Price wholesale must be a number',
-            'prices.*.price.required' => 'Price is required',
-            'prices.*.price.numeric' => 'Price must be a number',
         ];
     }
 
@@ -116,11 +103,6 @@ class ProductSizeDto extends BaseDto
             'stocks' => 'Stocks',
             'stocks.*.storeId' => 'Store ID',
             'stocks.*.stock' => 'Stock',
-            'prices' => 'Prices',
-            'prices.*.priceListId' => 'Price list ID',
-            'prices.*.priceNoVat' => 'Price no VAT',
-            'prices.*.priceWholesale' => 'Price wholesale',
-            'prices.*.price' => 'Price',
         ];
     }
 }

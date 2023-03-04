@@ -4,7 +4,7 @@ namespace Padosoft\LaravelDressCodeApi\ViewModel;
 
 use Exception;
 use Illuminate\View\Factory;
-use Padosoft\LaravelDressCodeApi\dto\ProductContainerDataDto;
+use Padosoft\LaravelDressCodeApi\dto\SendProductCompleteDto;
 
 class ProductJsonViewModel
 {
@@ -19,7 +19,7 @@ class ProductJsonViewModel
      * @throws Exception
      *                   return string
      */
-    public function render(ProductContainerDataDto $data, string $type): string
+    public function render(SendProductCompleteDto $data, string $type): string
     {
         try {
             switch ($type){

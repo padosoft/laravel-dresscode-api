@@ -2,17 +2,17 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-class ProductContainerDataDto
+class SendProductCompleteDto
 {
 
     public string $id;
     public ProductDto $product;
     public ProductPricesDto $prices;
-    public ProductSizesDto $sizes;
+    public ProductSizesWithPricesDto $sizes;
     public ProductLanguagesDto $languages;
     public ProductPhotosDto $photos;
 
-    public function __construct(string $id, ProductDto $product, ProductPricesDto $prices, ProductSizesDto $sizes, ProductLanguagesDto $languages, ProductPhotosDto $photos)
+    public function __construct(string $id, ProductDto $product, ProductPricesDto $prices, ProductSizesWithPricesDto $sizes, ProductLanguagesDto $languages, ProductPhotosDto $photos)
     {
         $this->id = $id;
         $this->product = $product;
@@ -22,7 +22,7 @@ class ProductContainerDataDto
         $this->photos = $photos;
     }
 
-    public static function create(string $id, ProductDto $product, ProductPricesDto $prices, ProductSizesDto $sizes, ProductLanguagesDto $languages, ProductPhotosDto $photos): ProductContainerDataDto
+    public static function create(string $id, ProductDto $product, ProductPricesDto $prices, ProductSizesWithPricesDto $sizes, ProductLanguagesDto $languages, ProductPhotosDto $photos): SendProductCompleteDto
     {
         return new self($id, $product, $prices, $sizes, $languages, $photos);
     }
