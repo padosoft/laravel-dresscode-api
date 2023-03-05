@@ -27,23 +27,23 @@ class ProductDto extends BaseDto
 
     public function __construct(
         string  $brandModelCode,
-        string  $brandColorCode,
         string  $sku,
         string  $seasonId,
         string  $brandId,
         string  $colorId,
         string  $genreId,
-        string  $typeId,
-        string  $categoryId,
-        string  $subcategoryId,
-        string  $sizeTypeId,
-        string  $collectionTypeId,
-        bool    $hasWashingtonFlag,
+        ?string  $brandColorCode,
+        ?string  $typeId,
+        ?string  $categoryId,
+        ?string  $subcategoryId,
+        ?string  $sizeTypeId,
+        ?string  $collectionTypeId,
+        ?bool    $hasWashingtonFlag,
         ?string $productPreSaleEnd,
         ?string $productDeleted,
-        array   $composition,
-        float   $weight,
-        array   $tags
+        ?array   $composition,
+        ?float   $weight,
+        ?array   $tags
     )
     {
         $this->brandModelCode = $brandModelCode;
@@ -70,12 +70,12 @@ class ProductDto extends BaseDto
 
     public static function create(
         string  $brandModelCode,
-        ?string  $brandColorCode,
         string  $sku,
         string  $seasonId,
         string  $brandId,
         string  $colorId,
         string  $genreId,
+        ?string  $brandColorCode,
         ?string  $typeId,
         ?string  $categoryId,
         ?string  $subcategoryId,
@@ -91,12 +91,12 @@ class ProductDto extends BaseDto
     {
         return new self(
             $brandModelCode,
-            $brandColorCode,
             $sku,
             $seasonId,
             $brandId,
             $colorId,
             $genreId,
+            $brandColorCode,
             $typeId,
             $categoryId,
             $subcategoryId,
@@ -141,12 +141,12 @@ class ProductDto extends BaseDto
     {
         return new self(
             $model->brandModelCode,
-            $model->brandColorCode,
             $model->sku,
             $model->seasonId,
             $model->brandId,
             $model->colorId,
             $model->genreId,
+            $model->brandColorCode,
             $model->typeId,
             $model->categoryId,
             $model->subcategoryId,
