@@ -70,23 +70,23 @@ class ProductDto extends BaseDto
 
     public static function create(
         string  $brandModelCode,
-        string  $brandColorCode,
+        ?string  $brandColorCode,
         string  $sku,
         string  $seasonId,
         string  $brandId,
         string  $colorId,
         string  $genreId,
-        string  $typeId,
-        string  $categoryId,
-        string  $subcategoryId,
-        string  $sizeTypeId,
-        string  $collectionTypeId,
-        bool    $hasWashingtonFlag,
+        ?string  $typeId,
+        ?string  $categoryId,
+        ?string  $subcategoryId,
+        ?string  $sizeTypeId,
+        ?string  $collectionTypeId,
+        ?bool    $hasWashingtonFlag,
         ?string $productPreSaleEnd,
         ?string $productDeleted,
-        array   $composition,
-        float   $weight,
-        array   $tags
+        ?array   $composition,
+        ?float   $weight,
+        ?array   $tags
     ): ProductDto
     {
         return new self(
