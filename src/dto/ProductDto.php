@@ -7,23 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class ProductDto extends BaseDto
 {
     public string $brandModelCode;
-    public string $brandColorCode;
     public string $sku;
     public string $seasonId;
     public string $brandId;
     public string $colorId;
     public string $genreId;
-    public string $typeId;
-    public string $categoryId;
-    public string $subcategoryId;
-    public string $sizeTypeId;
-    public string $collectionTypeId;
-    public bool $hasWashingtonFlag;
+    public ?string $brandColorCode;
+    public ?string $typeId;
+    public ?string $categoryId;
+    public ?string $subcategoryId;
+    public ?string $sizeTypeId;
+    public ?string $collectionTypeId;
+    public ?bool $hasWashingtonFlag;
     public ?string $productPreSaleEnd;
     public ?string $productDeleted;
-    public array $composition;
-    public float $weight;
-    public array $tags;
+    public ?array $composition;
+    public ?float $weight;
+    public ?array $tags;
 
     public function __construct(
         string  $brandModelCode,
