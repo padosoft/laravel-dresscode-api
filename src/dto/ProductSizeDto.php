@@ -38,12 +38,12 @@ class ProductSizeDto extends BaseDto
         return new self($sizeId, $gtin, $stocks);
     }
 
-    public static function createFromModel(Model $model): ProductSizeDto
+    public static function createFromModel(Model $model, array $syncName = []): ProductSizeDto
     {
         return new self(
-            (string)$model->sizeId,
-            (string)$model->gtin,
-            (array)$model->stocks
+            self::getRightCol($model, $syncName, 'sizeId'),
+            self::getRightCol($model, $syncName, 'gtin'),
+            self::getRightCol($model, $syncName, 'stocks')
         );
     }
 

@@ -29,10 +29,10 @@ class ProductPhotosDto
         return new self($productPhotos);
     }
 
-    public static function createFromCollection(Collection $collection): ProductPhotosDto
+    public static function createFromCollection(Collection $collection, array $syncName = []): ProductPhotosDto
     {
-        $productPhotos = $collection->map(function ($item) {
-            return ProductPhotoDto::createFromModel($item);
+        $productPhotos = $collection->map(function ($item) use ($syncName) {
+            return ProductPhotoDto::createFromModel($item, $syncName);
         })->toArray();
 
         return new self($productPhotos);

@@ -20,11 +20,11 @@ class ProductCompositionDto
         return new self($material, $percentage);
     }
 
-    public static function createFromModel(Model $model): ProductCompositionDto
+    public static function createFromModel(Model $model, array $syncName = []): ProductCompositionDto
     {
         return new self(
-            $model->material,
-            $model->percentage
+            getRightCol($model, $syncName, 'material'),
+            getRightCol($model, $syncName, 'percentage')
         );
     }
 

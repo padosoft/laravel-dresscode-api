@@ -25,11 +25,11 @@ class ProductStockDto extends BaseDto
         return new self($storeId, $stock);
     }
 
-    public static function createFromModel(Model $model): ProductStockDto
+    public static function createFromModel(Model $model, array $syncName = []): ProductStockDto
     {
         return new self(
-            $model->storeId,
-            $model->stock
+            self::getRightCol($model, $syncName, 'storeId'),
+            self::getRightCol($model, $syncName, 'stock')
         );
     }
 

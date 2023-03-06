@@ -25,13 +25,13 @@ class ProductPriceDto extends BaseDto
         return new self($priceListId, $priceNoVat, $priceWholesale, $price);
     }
 
-    public static function createFromModel(Model $model): ProductPriceDto
+    public static function createFromModel(Model $model, array $syncName = []): ProductPriceDto
     {
         return new self(
-            $model->priceListId,
-            $model->priceNoVat,
-            $model->priceWholesale,
-            $model->price
+            self::getRightCol($model, $syncName, 'priceListId'),
+            self::getRightCol($model, $syncName, 'priceNoVat'),
+            self::getRightCol($model, $syncName, 'priceWholesale'),
+            self::getRightCol($model, $syncName, 'price')
         );
     }
 

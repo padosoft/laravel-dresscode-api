@@ -50,17 +50,17 @@ class ProductLanguageDto extends BaseDto
      * @property array|null $customData Dati personalizzati aggiuntivi sul prodotto (se presenti).
      */
 
-    public static function createFromModel(Model $model): ProductLanguageDto
+    public static function createFromModel(Model $model, array $syncName = []): ProductLanguageDto
     {
         return new self(
-            $model->languageId,
-            $model->name,
-            $model->description,
-            $model->composition,
-            $model->madeIn,
-            $model->sizeAndFit,
-            $model->notes,
-            $model->customData
+            self::getRightCol($model, $syncName, 'languageId'),
+            self::getRightCol($model, $syncName, 'name'),
+            self::getRightCol($model, $syncName, 'description'),
+            self::getRightCol($model, $syncName, 'composition'),
+            self::getRightCol($model, $syncName, 'madeIn'),
+            self::getRightCol($model, $syncName, 'sizeAndFit'),
+            self::getRightCol($model, $syncName, 'notes'),
+            self::getRightCol($model, $syncName, 'customData')
         );
     }
 

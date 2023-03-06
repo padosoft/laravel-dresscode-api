@@ -30,10 +30,10 @@ class ProductPricesDto
         return new self($productPrices);
     }
 
-    public function createFromCollection(Collection $collection): ProductPricesDto
+    public function createFromCollection(Collection $collection,array $syncName): ProductPricesDto
     {
-        $productPrices = $collection->map(function ($item) {
-            return ProductPriceDto::createFromModel($item);
+        $productPrices = $collection->map(function ($item) use ($syncName) {
+            return ProductPriceDto::createFromModel($item,$syncName);
         })->toArray();
 
         return new self($productPrices);

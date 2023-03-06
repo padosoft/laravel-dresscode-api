@@ -50,11 +50,11 @@ class ProductSizesDto extends BaseDto
      *
      * @return ProductSizesDto
      */
-    public static function createFromCollection(Collection $collection): ProductSizesDto
+    public static function createFromCollection(Collection $collection, array $syncName = []): ProductSizesDto
     {
         $productSizes = [];
         foreach ($collection as $item) {
-            $productSizes[] = ProductSizeDto::createFromModel($item);
+            $productSizes[] = ProductSizeDto::createFromModel($item, $syncName);
         }
 
         return new self($productSizes);
