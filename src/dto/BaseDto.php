@@ -49,7 +49,7 @@ class BaseDto implements DtoValidationInterface
         // TODO: Implement validationAttributes() method.
     }
 
-    public static function getRightCol($model, $name, $syncName){
+    public static function getRightCol($model, $syncName,  $name){
         if (isset($syncName[$name])) {
             $col = $syncName[$name];
             return $model->$col??null;
