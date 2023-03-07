@@ -19,7 +19,7 @@ class ProductV3Dto extends BaseDto
      *
      * @throws \Exception
      */public function __construct(
-        array  $data,
+        array  $data
     )
     {
         $this->data = $data;
@@ -32,7 +32,7 @@ class ProductV3Dto extends BaseDto
      * @return ProductV3Dto
      * @throws \Exception
      */public static function create(
-        string  $data,
+        array  $data,
     ): ProductV3Dto
     {
         return new self(
