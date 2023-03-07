@@ -2,8 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Padosoft\LaravelDressCodeApi\Models\dto\AutoDtoBase;
-
 class PostObject extends AutoDtoBase
 {
     public PostObjectData $data;
