@@ -4,11 +4,21 @@ namespace Padosoft\LaravelDressCodeApi\dto;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *
+ */
 class ProductV3Dto extends BaseDto
 {
 
+    /**
+     * @var array
+     */
     public array $data
-    public function __construct(
+    /**
+     * @param array $data
+     *
+     * @throws \Exception
+     */public function __construct(
         array  $data,
     )
     {
@@ -16,7 +26,12 @@ class ProductV3Dto extends BaseDto
         parent::__construct();
     }
 
-    public static function create(
+    /**
+     * @param string $data
+     *
+     * @return ProductV3Dto
+     * @throws \Exception
+     */public static function create(
         string  $data,
     ): ProductV3Dto
     {
@@ -28,27 +43,26 @@ class ProductV3Dto extends BaseDto
     /**
      * Crea un nuovo oggetto ProductDto a partire da un oggetto Model.
      *
-     * @param Model $model L'oggetto Model da cui creare il ProductDto.
-     * @return ProductDto Il nuovo oggetto ProductDto.
+     * @return array Il nuovo oggetto ProductDto.
      *
-     * @property string $brandModelCode Il codice del modello del prodotto.
-     * @property string $brandColorCode Il codice del colore del prodotto.
-     * @property string $sku Il codice SKU del prodotto.
-     * @property int $seasonId L'ID della stagione a cui appartiene il prodotto.
-     * @property int $brandId L'ID del marchio a cui appartiene il prodotto.
-     * @property int $colorId L'ID del colore del prodotto.
-     * @property int $genreId L'ID del genere del prodotto.
-     * @property int $typeId L'ID del tipo di prodotto.
-     * @property int $categoryId L'ID della categoria a cui appartiene il prodotto.
-     * @property int $subcategoryId L'ID della sottocategoria a cui appartiene il prodotto.
-     * @property int $sizeTypeId L'ID del tipo di taglia del prodotto.
-     * @property int $collectionTypeId L'ID del tipo di collezione del prodotto.
-     * @property bool $hasWashingtonFlag True se il prodotto ha il flag di Washington, false altrimenti.
+     * @property string      $brandModelCode    Il codice del modello del prodotto.
+     * @property string      $brandColorCode    Il codice del colore del prodotto.
+     * @property string      $sku               Il codice SKU del prodotto.
+     * @property int         $seasonId          L'ID della stagione a cui appartiene il prodotto.
+     * @property int         $brandId           L'ID del marchio a cui appartiene il prodotto.
+     * @property int         $colorId           L'ID del colore del prodotto.
+     * @property int         $genreId           L'ID del genere del prodotto.
+     * @property int         $typeId            L'ID del tipo di prodotto.
+     * @property int         $categoryId        L'ID della categoria a cui appartiene il prodotto.
+     * @property int         $subcategoryId     L'ID della sottocategoria a cui appartiene il prodotto.
+     * @property int         $sizeTypeId        L'ID del tipo di taglia del prodotto.
+     * @property int         $collectionTypeId  L'ID del tipo di collezione del prodotto.
+     * @property bool        $hasWashingtonFlag True se il prodotto ha il flag di Washington, false altrimenti.
      * @property string|null $productPreSaleEnd La data di fine della pre-vendita del prodotto (se presente).
-     * @property bool $productDeleted True se il prodotto è stato cancellato, false altrimenti.
-     * @property string|null $composition La composizione del prodotto (se presente).
-     * @property string|null $weight Il peso del prodotto (se presente).
-     * @property array|null $tags Gli eventuali tag associati al prodotto (se presenti).
+     * @property bool        $productDeleted    True se il prodotto è stato cancellato, false altrimenti.
+     * @property string|null $composition       La composizione del prodotto (se presente).
+     * @property string|null $weight            Il peso del prodotto (se presente).
+     * @property array|null  $tags              Gli eventuali tag associati al prodotto (se presenti).
      */
 
 
@@ -57,30 +71,32 @@ class ProductV3Dto extends BaseDto
         return $this->data;
     }
 
-    public function validationRoles(): array
+    /**
+     * @return array[]
+     */public function validationRoles(): array
     {
         return [
             'id' => ['required', 'string'],
             'product' => ['required','array'],
             'product.*.brandModelCode' => ['required', 'string'],
-            'product.*.brandColorCode' => ['required', 'string'],
+            'product.*.brandColorCode' => ['string'],
             'product.*.sku' => ['required', 'string'],
             'product.*.seasonId' => ['required', 'string'],
             'product.*.brandId' => ['required', 'string'],
             'product.*.colorId' => ['required', 'string'],
             'product.*.genreId' => ['required', 'string'],
-            'product.*.typeId' => ['required', 'string'],
-            'product.*.categoryId' => ['required', 'string'],
-            'product.*.subcategoryId' => ['required', 'string'],
-            'product.*.sizeTypeId' => ['required', 'string'],
-            'product.*.collectionTypeId' => ['required', 'string'],
-            'product.*.hasWashingtonFlag' => ['required', 'boolean'],
-            'product.*.productPreSaleEnd' => ['required', 'date'],
-            'product.*.productDeleted' => ['required', 'date'],
-            'product.*.composition' => ['required', 'array'],
+            'product.*.typeId' => ['string'],
+            'product.*.categoryId' => ['string'],
+            'product.*.subcategoryId' => ['string'],
+            'product.*.sizeTypeId' => ['string'],
+            'product.*.collectionTypeId' => ['string'],
+            'product.*.hasWashingtonFlag' => ['boolean'],
+            'product.*.productPreSaleEnd' => ['date'],
+            'product.*.productDeleted' => ['date'],
+            'product.*.composition' => ['array'],
             'product.*.composition.*.material' => ['required', 'string'],
-            'product.*.composition.*.percentage' => ['required', 'numeric', 'min:0', 'max:100'],
-            'product.*.weight' => ['required', 'numeric', 'min:0'],
+            'product.*.composition.*.percentage' => ['numeric', 'min:0', 'max:100'],
+            'product.*.weight' => ['numeric', 'min:0'],
             'product.*.tags' => ['nullable', 'array'],
             'product.*.tags.*' => ['nullable', 'string'],
             'prices' => ['required', 'array'],
@@ -101,7 +117,7 @@ class ProductV3Dto extends BaseDto
             'languages' => ['required', 'array'],
             'languages.*.languageId' => ['required', 'string'],
             'languages.*.name' => ['required', 'string'],
-            'languages.*.description' => ['required', 'string'],
+            'languages.*.description' => ['string'],
             'languages.*.composition' => ['nullable', 'string'],
             'languages.*.madeIn' => ['nullable', 'string'],
             'languages.*.sizeAndFit' => ['nullable', 'string'],
@@ -115,7 +131,9 @@ class ProductV3Dto extends BaseDto
 
     }
 
-    public function validationMessages(): array
+    /**
+     * @return string[]
+     */public function validationMessages(): array
     {
         return [
             'required' => 'Il campo :attribute è obbligatorio.',
@@ -140,7 +158,9 @@ class ProductV3Dto extends BaseDto
 
     }
 
-    public function validationAttributes(): array
+    /**
+     * @return string[]
+     */public function validationAttributes(): array
     {
         return [
             'brandModelCode' => 'Brand Model Code',
