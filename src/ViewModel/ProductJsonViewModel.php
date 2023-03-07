@@ -19,7 +19,7 @@ class ProductJsonViewModel
      * @throws Exception
      *                   return string
      */
-    public function render(SendProductCompleteDto $data, string $type): string
+    public function render(array $data, string $type): string
     {
         try {
             switch ($type){

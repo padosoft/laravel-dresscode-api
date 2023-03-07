@@ -3,6 +3,7 @@
 namespace Padosoft\LaravelDressCodeApi;
 
 use Exception;
+use Padosoft\LaravelDressCodeApi\dto\BaseDto;
 use Padosoft\LaravelDressCodeApi\dto\SendProductCompleteDto;
 use Padosoft\LaravelDressCodeApi\dto\ProductDto;
 use Padosoft\LaravelDressCodeApi\ViewModel\ProductJsonViewModel;
@@ -46,9 +47,10 @@ class ProductsSenderService
     /**
      * @throws Exception
      */
-    public function addProduct(string $product_ID, SendProductCompleteDto $productContainerDto): ProductsSenderService
+    public function addProduct(string $product_ID,array  $data): ProductsSenderService
     {
-        $json = $this->createJsonFromProductDto($productContainerDto);
+
+        $json = json_encode($data);
         $this->products_ID[] = $product_ID;
         $this->json[] = $json;
         //se si è raggiunto il chunk size, si invia il chunk
@@ -75,11 +77,6 @@ class ProductsSenderService
         $service->execute($this);
     }
 
-    public function createJsonFromProductDto(SendProductCompleteDto $productDto): string
-    {
-        $service = app(ProductJsonViewModel::class);
-        return $service->render($productDto, $this->typeSender);
-    }
 
 
 }
