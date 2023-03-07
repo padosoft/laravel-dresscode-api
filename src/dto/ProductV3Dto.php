@@ -2,8 +2,6 @@
 
 namespace Padosoft\LaravelDressCodeApi\dto;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  *
  */
@@ -13,13 +11,11 @@ class ProductV3Dto extends BaseDto
     /**
      * @var array
      */
-    public array $data
-    /**
-     * @param array $data
-     *
-     * @throws \Exception
-     */public function __construct(
-        array  $data
+    public array $data;
+
+
+    public function __construct(
+        array $data
     )
     {
         $this->data = $data;
@@ -31,8 +27,9 @@ class ProductV3Dto extends BaseDto
      *
      * @return ProductV3Dto
      * @throws \Exception
-     */public static function create(
-        array  $data,
+     */
+    public static function create(
+        array $data,
     ): ProductV3Dto
     {
         return new self(
@@ -73,11 +70,12 @@ class ProductV3Dto extends BaseDto
 
     /**
      * @return array[]
-     */public function validationRoles(): array
+     */
+    public function validationRoles(): array
     {
         return [
             'id' => ['required', 'string'],
-            'product' => ['required','array'],
+            'product' => ['required', 'array'],
             'product.*.brandModelCode' => ['required', 'string'],
             'product.*.brandColorCode' => ['string'],
             'product.*.sku' => ['required', 'string'],
@@ -127,13 +125,14 @@ class ProductV3Dto extends BaseDto
             'photos.*.position' => ['required', 'numeric', 'min:1'],
             'photos.*.url' => ['required', 'url'],
             'photos.*.tag' => ['nullable', 'string'],
-];
+        ];
 
     }
 
     /**
      * @return string[]
-     */public function validationMessages(): array
+     */
+    public function validationMessages(): array
     {
         return [
             'required' => 'Il campo :attribute è obbligatorio.',
@@ -160,7 +159,8 @@ class ProductV3Dto extends BaseDto
 
     /**
      * @return string[]
-     */public function validationAttributes(): array
+     */
+    public function validationAttributes(): array
     {
         return [
             'brandModelCode' => 'Brand Model Code',
