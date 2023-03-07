@@ -30,7 +30,7 @@ class SendProductCompleteDto extends BaseDto
      */
     public static function create(
         array $data,
-    ): ProductV3Dto
+    ): SendProductCompleteDto
     {
         return new self(
             $data
