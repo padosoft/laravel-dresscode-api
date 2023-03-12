@@ -4,7 +4,7 @@ namespace Padosoft\LaravelDressCodeApi\ViewModel;
 
 use Exception;
 use Illuminate\View\Factory;
-use Padosoft\LaravelDressCodeApi\dto\SendProductCompleteDto;
+use Padosoft\LaravelDressCodeApi\dto\SendProductPricesAndSizesDto;
 
 class ProductJsonViewModel
 {

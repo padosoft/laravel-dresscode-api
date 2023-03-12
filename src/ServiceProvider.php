@@ -14,10 +14,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         //
         $this->publishes([
-            __DIR__ . '/Migrations' => database_path('migrations'),
+            __DIR__ . '/migrations' => database_path('migrations'),'migrations'
         ]);
         $this->publishes([
-            __DIR__ . '/Config/config.php' => config_path('dresscode-api-settings.php'),
+            __DIR__ . '/config/config.php' => config_path('dresscode-api-settings.php'),'config'
         ]);
     }
 

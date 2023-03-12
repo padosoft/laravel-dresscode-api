@@ -16,4 +16,6 @@ return [
     'providers' => [
         Illuminate\View\ViewServiceProvider::class,
     ],
+    'chunkSize' => 500,
+    'testmode' => env('DRESSCODE_TESTMODE', true),
 ];

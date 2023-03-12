@@ -3,7 +3,7 @@
 namespace Padosoft\LaravelDressCodeApi\Service;
 
 use Exception;
-use Padosoft\LaravelDressCodeApi\dto\SendProductCompleteDto;
+use Padosoft\LaravelDressCodeApi\dto\SendProductPricesAndSizesDto;
 use Padosoft\LaravelDressCodeApi\ViewModel\ProductJsonViewModel;
 
 class RenderJsonProductService
@@ -20,7 +20,7 @@ class RenderJsonProductService
      * return string
      *
      */
-    public function execute(SendProductCompleteDto $product): string
+    public function execute(SendProductPricesAndSizesDto $product): string
     {
         try {
             return $this->view->render($product);

@@ -3,17 +3,13 @@
 namespace Padosoft\LaravelDressCodeApi;
 
 use Exception;
-use Padosoft\LaravelDressCodeApi\dto\BaseDto;
-use Padosoft\LaravelDressCodeApi\dto\SendProductCompleteDto;
-use Padosoft\LaravelDressCodeApi\dto\ProductDto;
-use Padosoft\LaravelDressCodeApi\ViewModel\ProductJsonViewModel;
 
 class ProductsSenderService
 {
-
     public array $products_ID;
-    public array $json;
-    public int $chunkSize = 0;
+    public array $data;
+    public int $chunkSize = 50;
+    public bool $testMode = true;
 
     public string $typeSender = 'products';
 
@@ -21,8 +17,9 @@ class ProductsSenderService
     public function __construct()
     {
         $this->products_ID = [];
-        $this->json = [];
-        $this->chunkSize = config('dresscode-api-settings.chunkSize',0);
+        $this->data = [];
+        $this->chunkSize = config('dresscode-api-settings.chunkSize', 0);
+        $this->testMode = config('dresscode-api-settings.testMode', true);
     }
 
     /**
@@ -47,14 +44,14 @@ class ProductsSenderService
     /**
      * @throws Exception
      */
-    public function addProduct(string $product_ID,array  $data): ProductsSenderService
+    public function addProduct(string $product_ID, array $data): ProductsSenderService
     {
 
         $json = json_encode($data);
         $this->products_ID[] = $product_ID;
-        $this->json[] = $json;
+        $this->data[] = $data;
         //se si è raggiunto il chunk size, si invia il chunk
-        if ($this->chunkSize!==0 && count($this->products_ID) === $this->chunkSize) {
+        if ($this->chunkSize !== 0 && count($this->products_ID) === $this->chunkSize) {
             $this->sendChunk();
         }
         return $this;
@@ -66,17 +63,14 @@ class ProductsSenderService
     public function sendChunk(): void
     {
         $service = app(UploadProductsService::class);
-        $service->execute($this);
+        $service->execute($this, $this->testMode);
         $this->products_ID = [];
-        $this->json = [];
+        $this->data = [];
     }
 
     public function execute(): void
     {
         $service = app(UploadProductsService::class);
-        $service->execute($this);
+        $service->execute($this, $this->testMode);
     }
-
-
-
 }

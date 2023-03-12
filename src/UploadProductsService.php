@@ -19,22 +19,44 @@ class UploadProductsService extends DressCodeClientService
      * @return PostResponse
      * @throws Exception
      */
-    public function execute(ProductsSenderService $products): PostResponse
+    public function execute(ProductsSenderService $products, bool $testMode = true): PostResponse
     {
         try {
+            //{
+            //    "data": {
+            //        "wmsID": "string",
+            //        "dataType": "string",
+            //        "data": {},
+            //        "mimeType": "string",
+            //        "testMode": true
+            //    },
+            //    "options": [{
+            //        "name": "string",
+            //        "value": "string"
+            //    }]
+            //}
+            $data = [
+                'data' => [
+                    'dataType' => 'Products',
+                    'data' => $products->data,
+                    'mimeType' => 'application/json',
+                    //'testMode' => $testMode,
+                ]];
+            $data = json_encode($data);
             //invia i dati al server
-            $response = DressCodeClientApi::create($this->dressCodeKey)->postUpload($this->dressCodeKey->hub_key, $products->json);
+            $response = DressCodeClientApi::create($this->dressCodeKey)->postUpload($this->dressCodeKey->hub_key, $data);
+
+            DD($response,$data);
             //recupera lo status code e i dati della risposta
-            $statusCode = $response->getStatusCode();
+            $statusCode = $response['data']['status'];
             //recupera i dati della risposta
-            $data = json_decode($response->getBody(), true);
+            //$data = json_decode($response->getBody(), true);
             $this->logProductsSend($products);
             //crea un oggetto PostResponse
-            return PostResponse::create($statusCode, $data);
+            return PostResponse::create($statusCode, $response);
         } catch (Exception $e) {
             $this->logProductsSend($products, false);
             throw new Exception($e->getMessage());
         }
     }
-
 }

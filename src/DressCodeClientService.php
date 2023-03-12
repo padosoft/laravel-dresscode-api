@@ -56,6 +56,7 @@ class DressCodeClientService
 
     public function logProductsSend(ProductsSenderService $products, bool $success = true): void
     {
+        echo('Caricati '.count($products->data).' prodotti').PHP_EOL;
         //registra il log dei prodotti inviati
         //Compress json data
         //$products->json = gzcompress($products->json);
