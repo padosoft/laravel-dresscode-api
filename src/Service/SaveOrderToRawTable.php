@@ -65,6 +65,9 @@ class SaveOrderToRawTable
             'checkoutDate' => 'nullable|date',
             'clientId' => 'required',
             'storeId' => 'nullable|string',
+            'sourceName' => 'nullable|string',
+            'priceListId' => 'nullable|string',
+            'storeOrderId' => 'nullable|string',
             'shippingType' => 'nullable|string',
             'shippingCost' => 'nullable|numeric',
             'voucher' => 'nullable|numeric',
@@ -118,7 +121,7 @@ class SaveOrderToRawTable
             'details.*.discount' => 'nullable|numeric',
             'details.*.discountDetails.*.discountType' => 'nullable|string',
             'details.*.discountDetails.*.discountLabel' => 'nullable|string',
-            'details.*.discountDetails.*.discountValue' => 'nullable|numeric',
+            'details.*.discountDetails.*.discountValue' => 'nullable|numeric'
         ];
 
     }

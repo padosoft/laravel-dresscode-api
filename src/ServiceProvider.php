@@ -19,6 +19,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishes([
             __DIR__ . '/config/config.php' => config_path('dresscode-api-settings.php'),'config'
         ]);
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
     /**
