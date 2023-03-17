@@ -3,6 +3,7 @@
 namespace Padosoft\LaravelDressCodeApi\Service;
 
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Padosoft\LaravelDressCodeApi\Email\EmailAlertImportOrder;
@@ -11,6 +12,7 @@ use Padosoft\LaravelDressCodeApi\Models\DresscodeRawDettagliSconto;
 use Padosoft\LaravelDressCodeApi\Models\DresscodeRawIndirizzoFatturazione;
 use Padosoft\LaravelDressCodeApi\Models\DresscodeRawIndirizzoSpedizione;
 use Padosoft\LaravelDressCodeApi\Models\DresscodeRawOrdini;
+use Padosoft\LaravelDressCodeApi\Response\DressCodeResponse;
 
 class SaveOrderToRawTable
 {
@@ -19,6 +21,7 @@ class SaveOrderToRawTable
      */
     public function execute(string $json): DresscodeRawOrdini
     {
+        $response = DressCodeResponse::create();
         DB::beginTransaction();
         $jsonData = json_decode($json, true);
         //Validazione dei dati
@@ -125,6 +128,5 @@ class SaveOrderToRawTable
         ];
 
     }
-
 
 }
