@@ -19,17 +19,37 @@ class SaveOrderToRawTable
     /**
      * @throws \Exception
      */
-    public function execute(string $json): DresscodeRawOrdini
+    public function execute(string $json, bool $overwrite = false): DressCodeResponse
     {
+
         $response = DressCodeResponse::create();
+        $response->setDetail($json);
         DB::beginTransaction();
         $jsonData = json_decode($json, true);
+        $jsonData = $jsonData['data'];
         //Validazione dei dati
-
-
         try {
             $validation = Validator::make($jsonData, $this->validateRoles())->validate();
+
             // Salva l'ordine
+            $orderID = $jsonData['orderID'];
+            $order = DresscodeRawOrdini::where('orderID', $orderID)->first();
+            if ($order!==null && $overwrite===false) {
+                $response->setTitle('Order already exists');
+                $response->setDataCode('500');
+                DB::rollBack();
+                return $response;
+            }
+            if ($order!==null && $overwrite===true) {
+                $orders_id = DresscodeRawOrdini::where('orderID', $orderID)->pluck('id')->toArray();
+                DresscodeRawOrdini::where('orderID', $orderID)->delete();
+                $dettagli = DresscodeRawDettagliOrdine::whereIn('id_ordine', $orders_id)->pluck('id')->toArray();
+                DresscodeRawDettagliSconto::whereIn('id_dettaglio_ordine', $dettagli)->delete();
+                DresscodeRawDettagliOrdine::whereIn('id_ordine', $orders_id)->delete();
+                DresscodeRawIndirizzoFatturazione::whereIn('id_ordine', $orders_id)->delete();
+                DresscodeRawIndirizzoSpedizione::whereIn('id_ordine', $orders_id)->delete();
+            }
+
             $order = new DresscodeRawOrdini($jsonData);
             $order->save();
 
@@ -54,11 +74,16 @@ class SaveOrderToRawTable
 
             DB::commit();
         } catch (\Exception $e) {
+            $response->setTitle('Error saving order');
+            $response->setCode('500');
+            $response->setDetail($e->getMessage(),true);
             DB::rollBack();
-            EmailAlertImportOrder::sendErrorEmail($jsonData, $e);
-            throw $e;
+            //EmailAlertImportOrder::sendErrorEmail($jsonData, $e);
+            return $response;
         }
-        return $order;
+        $response->setTitle('Order saved');
+        $response->setCode('201');
+        return $response;
     }
 
     public function validateRoles()
