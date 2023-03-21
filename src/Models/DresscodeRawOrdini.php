@@ -40,16 +40,16 @@ class DresscodeRawOrdini extends Model
 
     public function indirizzoSpedizione()
     {
-        return $this->hasOne(DresscodeRawIndirizzoSpedizione::class, 'id_ordine', 'id_ordine');
+        return $this->hasOne(DresscodeRawIndirizzoSpedizione::class, 'id_ordine', 'id');
     }
 
     public function indirizzoFatturazione()
     {
-        return $this->hasOne(DresscodeRawIndirizzoFatturazione::class, 'id_ordine', 'id_ordine');
+        return $this->hasOne(DresscodeRawIndirizzoFatturazione::class, 'id_ordine', 'id');
     }
 
     public function dettagliOrdine()
     {
-        return $this->hasMany(DresscodeRawDettagliOrdine::class, 'id_ordine', 'id_ordine');
+        return $this->hasMany(DresscodeRawDettagliOrdine::class, 'id_ordine', 'id');
     }
 }
