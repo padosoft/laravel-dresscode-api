@@ -5,7 +5,7 @@ namespace Padosoft\LaravelDressCodeApi\Service;
 use Illuminate\Support\Facades\Validator;
 use Padosoft\LaravelDressCodeApi\Models\DresscodeLogs;
 
-class LoggerService
+class DressCodeLoggerService
 {
     private $log;
     private string $type = 'out';
@@ -15,9 +15,20 @@ class LoggerService
     private string $data = '';
     private string $ip_address = '127.0.0.1';
 
-    public function __construct(DresscodeLogs $log)
+    public function __construct()
     {
-        $this->log = $log;
+        $this->log = new DresscodeLogs();
+        $this->log->type = $this->type;
+        $this->log->method = $this->method;
+        $this->log->route = $this->route;
+        $this->log->zip = $this->zip;
+        $this->log->data = $this->data;
+        $this->log->ip_address = $this->ip_address;
+    }
+
+    public static function create()
+    {
+        return new self();
     }
 
     public function out()
@@ -53,13 +64,9 @@ class LoggerService
 
     public function data($data)
     {
-        if (!extension_loaded('zlib')) {
-            $this->zip = false;
-            $this->data = $data;
-            return $this;
-        }
-        $this->zip = true;
-        $this->data = gzcompress($data, 9);
+        $this->zip = 0;
+        $this->data = $data;
+        return $this;
     }
 
     public function ip(string $ip_address = null)
@@ -87,13 +94,12 @@ class LoggerService
 
     public function save()
     {
-        $this->log->create([
-            'type' => $this->type,
-            'method' => $this->method,
-            'route' => $this->route,
-            'zip' => $this->zip,
-            'data' => $this->data,
-            'ip_address' => $this->ip_address
-        ]);
+        $this->log->ip_address = $this->ip_address;
+        $this->log->type = $this->type;
+        $this->log->method = $this->method;
+        $this->log->route = $this->route;
+        $this->log->zip = $this->zip;
+        $this->log->data = $this->data;
+        $this->log->save();
     }
 }
