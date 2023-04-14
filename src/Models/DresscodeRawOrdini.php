@@ -5,12 +5,13 @@ namespace Padosoft\LaravelDressCodeApi\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class DresscodeRawOrdini extends Model
 {
     use HasFactory;
 
     protected $table = 'dresscode_raw_ordini';
-    protected $primaryKey = 'id_ordine';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'orderID',
@@ -52,4 +53,6 @@ class DresscodeRawOrdini extends Model
     {
         return $this->hasMany(DresscodeRawDettagliOrdine::class, 'id_ordine', 'id');
     }
+
+
 }

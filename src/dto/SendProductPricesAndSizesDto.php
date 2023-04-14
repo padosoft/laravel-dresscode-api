@@ -57,7 +57,7 @@ class SendProductPricesAndSizesDto extends BaseDto
             'prices' => 'required|array',
             'prices.*.priceListId' => 'nullable|string',
             'prices.*.priceNoVat' => 'required|numeric|min:0',
-            'prices.*.priceWholesale' => 'required|numeric|min:0',
+            //'prices.*.priceWholesale' => 'required|numeric|min:0',
             'prices.*.price' => 'required|numeric|min:0',
             'sizes' => 'required|array',
             'sizes.*.sizeId' => 'required|string',

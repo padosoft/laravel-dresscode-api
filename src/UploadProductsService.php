@@ -22,19 +22,6 @@ class UploadProductsService extends DressCodeClientService
     public function execute(ProductsSenderService $products, bool $testMode = true): PostResponse
     {
         try {
-            //{
-            //    "data": {
-            //        "wmsID": "string",
-            //        "dataType": "string",
-            //        "data": {},
-            //        "mimeType": "string",
-            //        "testMode": true
-            //    },
-            //    "options": [{
-            //        "name": "string",
-            //        "value": "string"
-            //    }]
-            //}
             $data = [
                 'data' => [
                     'dataType' => 'Products',
@@ -45,8 +32,6 @@ class UploadProductsService extends DressCodeClientService
             $data = json_encode($data);
             //invia i dati al server
             $response = DressCodeClientApi::create($this->dressCodeKey)->postUpload($this->dressCodeKey->hub_key, $data);
-
-            DD($response,$data);
             //recupera lo status code e i dati della risposta
             $statusCode = $response['data']['status'];
             //recupera i dati della risposta
