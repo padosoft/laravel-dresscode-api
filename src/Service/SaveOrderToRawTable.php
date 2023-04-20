@@ -26,7 +26,7 @@ class SaveOrderToRawTable
         $response->setDetail($json);
         DB::beginTransaction();
         $jsonData = json_decode($json, true);
-        $jsonData = $jsonData['data'];
+        //$jsonData = $jsonData['data'];
         //Validazione dei dati
         try {
             $validation = Validator::make($jsonData, $this->validateRoles())->validate();
